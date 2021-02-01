@@ -1,11 +1,13 @@
 /*This Program asks the user to play a game with the computer.
-The user has the option to either let the computer guess a number,
-or the user guesses a number. The object is to guess the correct
+The user selects a range and picks a number and the computer 
+tries to guess the number.The object is to guess the correct
 number with the least amount of tries possible.*/
 
 /*JavaScript library readline
 load readline package, name it readline
 create readline interface using standard in and standard out*/
+
+
 const readline = require("readline");
 const rl = readline.createInterface(process.stdin, process.stdout);
 
@@ -31,6 +33,7 @@ async function start() {
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
   );
+
 
 
   let min = 1;//initializing global variable
@@ -88,6 +91,7 @@ async function start() {
      else if (yesNo === "no" || yesNo === "n") {
       yesNo = yesNo.toLowerCase();//sanitize input
     }
+    
   
     //higherLower is declared to answer if number is higher or lower than previous guess
     let higherLower = await ask("Is your number higher(h), or lower(l)");
