@@ -16,6 +16,13 @@ function ask(questionText) {
   });
 }
 
+//function to generate random integer for computers initial number
+function randomInt(min, max) {
+  let range = max - min + 1
+  let randInt = Math.floor(Math.random() * range) + min
+  return randInt
+}
+
 
 start();
 
@@ -46,36 +53,51 @@ async function start() {
       maxNum +
       " and you try to guess it...");
 
+
+
   //shows computers randomGuess for testing purposes
   //console.log  +secretNumber ;
+
 
 
   //declare newGuess and user chooses a number
     let newGuess = await ask("What's your guess?");
 
+    //start looping while user guess is not equal to computer number
+    while(newGuess !== secretNumber){
 
-    //loop starts and continues by letting user know every time number is higher than users guess
-    while (newGuess !== secretNumber && newGuess < secretNumber){
+
+
+    //else continues by letting user know number is higher
+    if (newGuess !== secretNumber && newGuess < secretNumber){
         newGuess = await ask("The number is higher, what's your guess?")
-            
-    }
+    }      
+    
 
     //loop continues letting user know if number is lower
-    while (newGuess !== secretNumber && newGuess > secretNumber){
+    else if (newGuess !== secretNumber && newGuess > secretNumber){
         newGuess = await ask("The number is lower, what's your guess?")
             
     }
 
     //users guesses correct and game ends
-    while (newGuess === +secretNumber){
+    if (newGuess == secretNumber){
         console.log("Yay!! You guessed it! Nice job.");
-        return process.exit();
+        break;
     }
   }
 
-  //function to generate random integer for computers initial number
-  function randomInt(min, max) {
-    let range = max - min + 1
-    let randInt = Math.floor(Math.random() * range) + min
-    return randInt
+  //Ask user to play again
+  let reStart = await ask(
+    'Would you like to play again, "yes" or "no"?'
+  );
+
+  //If answer yes start over
+  if (reStart == "yes" || reStart === "y") {
+
+    reStart = reStart.toLowerCase();//sanitize input
+    start();
+
+  //else quit
+  } else return process.exit();
 }
