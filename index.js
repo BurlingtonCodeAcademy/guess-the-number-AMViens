@@ -77,10 +77,6 @@ async function start() {
     let yesNo = await ask("Is your number" + firstGuess + "?");
 
 
-  //check to make sure yesNo input is correct
-    if(yesNo !== "yes" || yesNo !== "y" || yesNo !== "no" || yesNO !== "n"){
-      yesNo = await ask ("Unacceptable!! Please remain good form and answer yes or no")
-
 
     //if guess is correct answer yes and exit loop
     if (yesNo === "yes" || yesNo === "y") {
@@ -92,14 +88,10 @@ async function start() {
      else if (yesNo === "no" || yesNo === "n") {
       yesNo = yesNo.toLowerCase();//sanitize input
     }
-  }
+  
     //higherLower is declared to answer if number is higher or lower than previous guess
     let higherLower = await ask("Is your number higher(h), or lower(l)");
 
-
-    //check to make sure higherLower input is correct
-    if (higherLower !== "higher" || higherLower !== "h" || higherLower !== "lower" || higherLower !== "l"){
-      higherLower = await ask ("Unacceptable!! Remain good form and answer higher or lower, please.")
 
 
     //if answer is higher modify function min value for new guess range
@@ -113,7 +105,7 @@ async function start() {
       higherLower = higherLower.toLowerCase();//sanitize input
       maxNum = firstGuess;
     }
-  }
+  
     //declare firstGuess to accept new guess range min or max
     firstGuess = randomGuess(min, maxNum);
   }
