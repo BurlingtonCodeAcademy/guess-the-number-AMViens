@@ -58,14 +58,14 @@ async function start() {
   //shows computers randomGuess for testing purposes
   //console.log  +secretNumber ;
 
-  let guess = 0;
+  let guess = 0;//initializing guess variable
 
   //declare newGuess and user chooses a number
     let newGuess = await ask("What's your guess?");
 
     //start looping while user guess is not equal to computer number
     while(newGuess !== secretNumber){
-    guess++;
+    guess++;//adds a guess each iteration
 
 
     //else continues by letting user know number is higher
@@ -80,7 +80,7 @@ async function start() {
             
     }
 
-    //users guesses correct and game ends
+    //users guesses correct and learns how many guesses it took, game ends
     if (newGuess == secretNumber){
       guess = guess + 1;
         console.log("Yay!! You guessed it in " + guess + " guesses! Nice job.");

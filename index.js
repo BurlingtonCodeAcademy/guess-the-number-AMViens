@@ -30,12 +30,17 @@ start();
 //Start Game with async function
 async function start() {
 
+  let whichGame = await ask ("Would you like to 'guess' a number, or 'pick' a number?");
+  if (whichGame === "guess"){
+    console.log("node reverse_game.js");
+  }
+
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
   );
 
 
-  let guess = 0;
+  let guess = 0;//initializing guess variable
   let min = 1;//initializing global variable
 
 
@@ -76,7 +81,7 @@ async function start() {
   //initial loop while firstGuess is not correct
   while (firstGuess !== secretNumber) {
 
-    guess++;
+    guess++;//adds guess each iteration
 
     //yesNo declared to answer if computer guess is correct yes or no
     let yesNo = await ask("Is your number" + firstGuess + "?");
