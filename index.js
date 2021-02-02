@@ -35,7 +35,7 @@ async function start() {
   );
 
 
-
+  let guess = 0;
   let min = 1;//initializing global variable
 
 
@@ -76,6 +76,8 @@ async function start() {
   //initial loop while firstGuess is not correct
   while (firstGuess !== secretNumber) {
 
+    guess++;
+
     //yesNo declared to answer if computer guess is correct yes or no
     let yesNo = await ask("Is your number" + firstGuess + "?");
 
@@ -88,7 +90,7 @@ async function start() {
     }
 
   //else if guess is incorrect answer no and continue
-     else if (yesNo === "no" || yesNo === "n") {
+    if (yesNo === "no" || yesNo === "n") {
       yesNo = yesNo.toLowerCase();//sanitize input
     }
     
@@ -109,6 +111,8 @@ async function start() {
       higherLower = higherLower.toLowerCase();//sanitize input
       maxNum = firstGuess;
     }
+
+    
   
     //declare firstGuess to accept new guess range min or max
     firstGuess = randomGuess(min, maxNum);
@@ -118,7 +122,7 @@ async function start() {
 
   //Congratulate computer and ask to play again
   let reStart = await ask(
-    'Yay!! you guessed it!\nWould you like to play again, "yes" or "no"?'
+    "Yay!! you guessed it in " + guess + " guesses.\nWould you like to play again, 'yes' or 'no'?"
   );
 
   //If answer yes start over
