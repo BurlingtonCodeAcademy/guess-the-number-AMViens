@@ -39,7 +39,7 @@ async function start() {
   maxNum = +maxNum;
 
 
-  //Making sure the value given is acceptable
+  //Guard clause making sure the value given is acceptable
   while (isNaN(maxNum) || maxNum < min || maxNum > 100) {
     maxNum = await ask("Unacceptable Value, Please do try again");
   }

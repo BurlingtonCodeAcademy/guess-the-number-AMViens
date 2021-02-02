@@ -45,7 +45,7 @@ async function start() {
   maxNum = +maxNum;
 
 
-  //Making sure the value chosen is acceptable
+  //Guard clause making sure the value chosen is acceptable
   while (isNaN(maxNum) || maxNum < min || maxNum > 100) {
     maxNum = await ask("Unacceptable Value, Please do try again");
     maxNum = +maxNum;
@@ -62,7 +62,7 @@ async function start() {
   );
 
 
-  //Check number within given range for accuracy
+  //Guard clause to check number within given range for accuracy
   while (secretNumber > maxNum || secretNumber < min) {
     secretNumber = await ask("Noooooo!, That's impossible! Try again");
   }
