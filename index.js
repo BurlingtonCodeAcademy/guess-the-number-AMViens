@@ -30,10 +30,6 @@ start();
 //Start Game with async function
 async function start() {
 
-  let whichGame = await ask ("Would you like to 'guess' a number, or 'pick' a number?");
-  if (whichGame === "guess"){
-    console.log("node reverse_game.js");
-  }
 
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
