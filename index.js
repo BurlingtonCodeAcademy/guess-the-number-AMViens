@@ -48,6 +48,7 @@ async function start() {
   //Making sure the value chosen is acceptable
   while (isNaN(maxNum) || maxNum < min || maxNum > 100) {
     maxNum = await ask("Unacceptable Value, Please do try again");
+    maxNum = +maxNum;
   }
 
 
@@ -71,16 +72,16 @@ async function start() {
 
 
   //Computer guesses random number using the randomGuess function
-  let firstGuess = randomGuess(min, maxNum);
+  let compGuess = randomGuess(min, maxNum);
 
 
   //initial loop while firstGuess is not correct
-  while (firstGuess !== secretNumber) {
+  while (compGuess !== secretNumber) {
 
     guess++;//adds guess each iteration
 
     //yesNo declared to answer if computer guess is correct yes or no
-    let yesNo = await ask("Is your number" + firstGuess + "?");
+    let yesNo = await ask("Is your number" + compGuess + "?");
 
 
 
@@ -104,19 +105,19 @@ async function start() {
     //if answer is higher modify function min value for new guess range
     if (higherLower === "higher" || higherLower === "h") {
       higherLower = higherLower.toLowerCase();//sanitize input
-      min = firstGuess;
+      min = compGuess;
 
 
       //else if answer is lower modify function maxNum value for new guess range
     } else if (higherLower === "lower" || higherLower === "l") {
       higherLower = higherLower.toLowerCase();//sanitize input
-      maxNum = firstGuess;
+      maxNum = compGuess;
     }
 
     
   
     //declare firstGuess to accept new guess range min or max
-    firstGuess = randomGuess(min, maxNum);
+    compGuess = randomGuess(min, maxNum);
   }
   //End of loop iterations until computer guess is correct
 
