@@ -18,7 +18,7 @@ function ask(questionText) {
   });
 }
 
-//function to generate the computers guess. Although named randomGuess, I can predict the computers guess.
+//function to generate the computers guess. Although named randomGuess, I can predict the computers guess...ha ha ha!
 function randomGuess(min, max) {
   let range = max - min;
   let smartGuess = Math.floor(range / 2 + min);
