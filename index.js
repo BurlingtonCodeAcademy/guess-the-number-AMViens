@@ -35,9 +35,9 @@ async function start() {
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
   );
 
-
-  let guess = 0;//initializing guess variable
-  let min = 1;//initializing global variable
+  //initializing variables
+  let guess = 0;
+  let min = 1;
 
 
   //Letting the user choose the range of numbers
@@ -127,7 +127,7 @@ async function start() {
     "Yay!! you guessed it in " + guess + " guesses.\nWould you like to play again, 'yes' or 'no'?"
   );
 
-  //If answer yes start over
+  //yes start over
   if (reStart == "yes" || reStart === "y") {
     reStart = reStart.toLowerCase();
     start();
