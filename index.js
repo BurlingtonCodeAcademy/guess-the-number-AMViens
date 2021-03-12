@@ -30,6 +30,14 @@ start();
 //Start Game with async function
 async function start() {
 
+    let chooseGame = await ask("Would you like to guess a number chosen by the computer, or would you like the computer to guess a number chosen by you? Please enter accordingly, either 1 or 2, thankyou. ");
+
+    if (chooseGame == 1){
+
+
+      start();
+
+      async function start(){
 
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
@@ -134,4 +142,103 @@ async function start() {
 
   //else quit
   } else return process.exit();
+}
+  
+
+  } else if (chooseGame == 2) {
+    function randomInt(min, max) {
+      let range = max - min + 1
+      let randInt = Math.floor(Math.random() * range) + min
+      return randInt
+    }
+    
+    
+    start();
+    
+    //start game with async function
+    async function start() {
+      console.log(
+        "Let's play a game where I (computer) make up a number and you (human) try to guess it."
+      );
+      let min = 1;//initializing global variable
+    
+    
+      //Letting the user choose the range of numbers
+      let maxNum = await ask("Please select the maximum range 100 or less...");
+      maxNum = +maxNum;
+    
+    
+      //Guard clause making sure the value given is acceptable
+      while (isNaN(maxNum) || maxNum < min || maxNum > 100) {
+        maxNum = await ask("Unacceptable Value, Please do try again");
+      }
+    
+    
+      //Computer chooses a random number between the given range
+      let secretNumber = randomInt(min, maxNum);
+      console.log("I will think of a number between " +
+          min +
+          " and " +
+          maxNum +
+          " and you try to guess it...");
+    
+    
+    
+      //shows computers randomGuess for testing purposes
+      //console.log  +secretNumber ;
+    
+      let guess = 0;//initializing guess variable
+    
+      //declare newGuess and user chooses a number
+        let newGuess = await ask("What's your guess?");
+    
+        //start looping while user guess is not equal to computer number
+        while(newGuess !== secretNumber){
+        guess++;//adds a guess each iteration
+    
+    
+        //else continues by letting user know number is higher
+        if (newGuess !== secretNumber && newGuess < secretNumber){
+            newGuess = await ask("The number is higher, what's your guess?")
+        }      
+        
+    
+        //loop continues letting user know if number is lower
+        else if (newGuess !== secretNumber && newGuess > secretNumber){
+            newGuess = await ask("The number is lower, what's your guess?")
+                
+        }
+    
+        //users guesses correct and learns how many guesses it took, game ends
+        if (newGuess == secretNumber){
+          guess = guess + 1;
+            console.log("Yay!! You guessed it in " + guess + " guesses! Nice job.");
+            break;
+        }
+      }
+    
+      //Ask user to play again
+      let reStart = await ask(
+        'Would you like to play again, "yes" or "no"?'
+      );
+    
+      //If answer yes start over
+      if (reStart == "yes" || reStart === "y") {
+    
+        reStart = reStart.toLowerCase();//sanitize input
+        start();
+    
+      //else quit
+      } else return process.exit();
+    }
+
+  }
+    
+
+
+
+
+
+
+
 }
